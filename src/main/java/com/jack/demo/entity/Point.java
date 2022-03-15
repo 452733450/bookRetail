@@ -5,59 +5,33 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name="member")
+@Table(name = "point")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member implements Serializable {
+public class Point implements Serializable {
+    private static final long serialVersionUID = -7352672302226828462L;
 
-    private static final long serialVersionUID = 1743432154663277030L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
-     * 会员名称
+     * 会员id
      */
-    @Column
-    private String membername;
+    private Long memberid;
 
     /**
-     * 会员等级（1：金牌，2：银牌，3：铜牌）
+     * 总积分
      */
-    @Column
-    private Integer membertype;
-
-    /**
-     * 性别（1：男，女：2）
-     */
-    @Column
-    private Integer sex;
-
-    /**
-     * 年龄
-     */
-    @Column
-    private Integer age;
-
-    /**
-     * 手机号码
-     */
-    @Column
-    private String mobile;
-
-    /**
-     * 邮箱
-     */
-    @Column
-    private String email;
+    private BigDecimal total;
 
     /**
      * 是否已删除(1:是，0：否)

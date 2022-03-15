@@ -1,6 +1,6 @@
 package com.jack.demo.service.impl;
 
-import com.jack.demo.dao.MemberDao;
+import com.jack.demo.dao.MemberRepository;
 import com.jack.demo.dto.member.req.MemberCreateReq;
 import com.jack.demo.dto.member.req.MemberQueryReq;
 import com.jack.demo.dto.member.rsp.MemberQueryRsp;
@@ -24,25 +24,25 @@ import java.util.List;
 public class MemberServiceImpl implements MemberService {
 
     @Resource
-    MemberDao memberDao;
+    MemberRepository memberRepository;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(MemberCreateReq memberCreateReq) {
         Member member = new Member();
         BeanUtils.copyProperties(memberCreateReq, member);
-        memberDao.save(member);
+        memberRepository.save(member);
     }
 
     @Override
     public List<MemberQueryRsp> query(MemberQueryReq memberQueryReq) {
         Member member = new Member();
         BeanUtils.copyProperties(memberQueryReq, member);
-        List<Member> members = memberDao.findAll(Example.of(member));
+        List<Member> members = memberRepository.findAll(Example.of(member));
         List<MemberQueryRsp> res = new ArrayList<>();
-        members.forEach(m->{
+        members.forEach(m -> {
             MemberQueryRsp m1 = new MemberQueryRsp();
-            BeanUtils.copyProperties(m, m1 );
+            BeanUtils.copyProperties(m, m1);
             res.add(m1);
         });
         return res;

@@ -13,10 +13,12 @@ import java.io.Serializable;
 @Data
 public class MemberQueryRsp implements Serializable {
     private static final long serialVersionUID = -3875970543290465797L;
+
+    private Long id;
+
     /**
      * 会员名称
      */
-
     private String membername;
 
     /**

@@ -1,10 +1,8 @@
 package com.jack.demo.web.contorller;
 
 import com.jack.demo.annotation.ResponseWrapable;
-import com.jack.demo.dto.member.req.MemberCreateReq;
-import com.jack.demo.dto.member.req.MemberQueryReq;
-import com.jack.demo.dto.member.rsp.MemberQueryRsp;
-import com.jack.demo.service.MemberService;
+import com.jack.demo.dto.bizorder.req.BizOrderCreateReq;
+import com.jack.demo.service.BizOrderService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,27 +11,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
-@RequestMapping("member")
+@RequestMapping("bizOrder")
 @Validated
-public class MemberController {
+public class BizOrderController {
 
     @Resource
-    private MemberService memberService;
+    private BizOrderService bizOrderService;
 
     @PostMapping("/create")
     @ResponseWrapable
-    public void create(@RequestBody @Valid MemberCreateReq memberCreateReq) {
-        memberService.create(memberCreateReq);
+    public void create(@RequestBody @Valid BizOrderCreateReq bizOrderCreateReq) {
+        bizOrderService.create(bizOrderCreateReq);
     }
 
 
     @PostMapping("/query")
     @ResponseWrapable
-    public List<MemberQueryRsp> query(@RequestBody @Valid MemberQueryReq memberQueryReq) {
-        return memberService.query(memberQueryReq);
+    public void query() {
+        bizOrderService.query();
     }
-
 }

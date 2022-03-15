@@ -1,10 +1,11 @@
 package com.jack.demo.web.contorller;
 
 import com.jack.demo.annotation.ResponseWrapable;
-import com.jack.demo.dto.member.req.MemberCreateReq;
-import com.jack.demo.dto.member.req.MemberQueryReq;
-import com.jack.demo.dto.member.rsp.MemberQueryRsp;
-import com.jack.demo.service.MemberService;
+
+import com.jack.demo.dto.book.req.BookCreateReq;
+import com.jack.demo.dto.book.req.BookQueryReq;
+import com.jack.demo.entity.Book;
+import com.jack.demo.service.BookService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,25 +16,31 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
+
 @RestController
-@RequestMapping("member")
+@RequestMapping("book")
 @Validated
-public class MemberController {
+public class BookController {
 
     @Resource
-    private MemberService memberService;
+    private BookService bookService;
 
     @PostMapping("/create")
     @ResponseWrapable
-    public void create(@RequestBody @Valid MemberCreateReq memberCreateReq) {
-        memberService.create(memberCreateReq);
+    public void create(@RequestBody @Valid BookCreateReq bookCreateReq) {
+        bookService.create(bookCreateReq);
     }
-
 
     @PostMapping("/query")
     @ResponseWrapable
-    public List<MemberQueryRsp> query(@RequestBody @Valid MemberQueryReq memberQueryReq) {
-        return memberService.query(memberQueryReq);
+    public List<Book> query(@RequestBody @Valid BookQueryReq bookQueryReq) {
+        return bookService.query(bookQueryReq);
     }
 
+
+    @PostMapping("/deleteAll")
+    @ResponseWrapable
+    public void deleteAll() {
+        bookService.deleteAll();
+    }
 }

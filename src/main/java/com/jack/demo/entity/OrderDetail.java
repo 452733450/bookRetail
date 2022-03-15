@@ -5,75 +5,71 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name="member")
+@Table(name = "orderdetail")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member implements Serializable {
+public class OrderDetail implements Serializable {
 
-    private static final long serialVersionUID = 1743432154663277030L;
+    private static final long serialVersionUID = 3448071823735527269L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
-     * 会员名称
+     * 订单id
      */
-    @Column
-    private String membername;
+    private Long bizorderid;
 
     /**
-     * 会员等级（1：金牌，2：银牌，3：铜牌）
+     * 订单号
      */
-    @Column
-    private Integer membertype;
+    private String orderno;
 
     /**
-     * 性别（1：男，女：2）
+     * 会员id
      */
-    @Column
-    private Integer sex;
+    private Long memberid;
 
     /**
-     * 年龄
+     * 书籍id
      */
-    @Column
-    private Integer age;
+    private Long bookid;
 
     /**
-     * 手机号码
+     * 购买数量
      */
-    @Column
-    private String mobile;
+    private Integer num;
 
     /**
-     * 邮箱
+     * 购买单价
      */
-    @Column
-    private String email;
+    private BigDecimal price;
+
+    /**
+     * 总价
+     */
+    private BigDecimal total;
 
     /**
      * 是否已删除(1:是，0：否)
      */
-    @Column
-    private Integer isdeleted;
+    private Integer isdelete;
 
     /**
      * 更新时间
      */
-    @Column
     private Date updatetime;
 
     /**
      * 创建时间
      */
-    @Column
     private Date createtime;
 }

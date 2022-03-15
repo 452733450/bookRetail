@@ -19,7 +19,7 @@ import java.util.Map;
  * @Auther: Jack You
  * @Date: 2020/11/06/16:00
  */
-@ControllerAdvice(basePackages = {"com.manager.web"})
+@ControllerAdvice(basePackages = {"com.jack.demo.web"})
 @Slf4j
 public class ApiResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 

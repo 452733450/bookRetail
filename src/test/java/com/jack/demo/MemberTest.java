@@ -1,6 +1,6 @@
-package com.jack.demo.test;
+package com.jack.demo;
 
-import com.jack.demo.dao.MemberDao;
+import com.jack.demo.dao.MemberRepository;
 import com.jack.demo.entity.Member;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,9 +13,9 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class TestClass {
+public class MemberTest {
     @Autowired
-    private MemberDao memberDao;
+    private MemberRepository memberRepository;
 
     @Test
     public void testGetUserByName(){
@@ -23,8 +23,8 @@ public class TestClass {
         System.out.println("查询到用户名为："+member.getMemberName()+"的电话为："+member.getMobile());*/
         Member member1 = new Member();
         member1.setMembername("jack");
-        List<Member> memberList = memberDao.findAll(Example.of(member1));
-        List<Member> members = memberDao.findAll();
+        List<Member> memberList = memberRepository.findAll(Example.of(member1));
+        List<Member> members = memberRepository.findAll();
         System.out.println(memberList);
     }
 }

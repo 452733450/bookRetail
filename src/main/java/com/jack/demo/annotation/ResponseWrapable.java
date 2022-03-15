@@ -6,11 +6,6 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.METHOD;
 
-/**
- * @Description:
- * @Auther: Jack You
- * @Date: 2020/11/06/15:54
- */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(METHOD)
 public @interface ResponseWrapable {

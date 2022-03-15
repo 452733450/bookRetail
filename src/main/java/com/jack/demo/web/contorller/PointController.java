@@ -2,9 +2,9 @@ package com.jack.demo.web.contorller;
 
 import com.jack.demo.annotation.ResponseWrapable;
 import com.jack.demo.dto.member.req.MemberCreateReq;
-import com.jack.demo.dto.member.req.MemberQueryReq;
-import com.jack.demo.dto.member.rsp.MemberQueryRsp;
+import com.jack.demo.entity.Point;
 import com.jack.demo.service.MemberService;
+import com.jack.demo.service.PointService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,24 +16,23 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("member")
+@RequestMapping("point")
 @Validated
-public class MemberController {
+public class PointController {
 
     @Resource
-    private MemberService memberService;
+    private PointService pointService;
 
     @PostMapping("/create")
     @ResponseWrapable
-    public void create(@RequestBody @Valid MemberCreateReq memberCreateReq) {
-        memberService.create(memberCreateReq);
-    }
+    public void create() {
 
+    }
 
     @PostMapping("/query")
     @ResponseWrapable
-    public List<MemberQueryRsp> query(@RequestBody @Valid MemberQueryReq memberQueryReq) {
-        return memberService.query(memberQueryReq);
+    public List<Point> query(){
+        return pointService.query();
     }
 
 }
