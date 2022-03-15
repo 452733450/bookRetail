@@ -2,8 +2,9 @@ package com.jack.demo.web.contorller;
 
 import com.jack.demo.annotation.ResponseWrapable;
 import com.jack.demo.dao.MemberDao;
-
 import com.jack.demo.dto.member.req.MemberCreateReq;
+import com.jack.demo.dto.member.req.MemberQueryReq;
+import com.jack.demo.dto.member.rsp.MemberQueryRsp;
 import com.jack.demo.entity.Member;
 import com.jack.demo.service.MemberService;
 import org.springframework.data.domain.Example;
@@ -18,37 +19,24 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("test")
+@RequestMapping("member")
 @Validated
-public class TestController {
-    @Resource
-    private MemberDao memberDao;
+public class MemberController {
 
     @Resource
     private MemberService memberService;
-
-    @PostMapping("/test")
-    public void test() {
-        Member member1 = new Member();
-        member1.setMembername("jack");
-        memberDao.save(member1);
-    }
-
-    @PostMapping("/test2")
-    public void test2() {
-        /*Member member=memberDao.findByMemberName("jack");
-        System.out.println("查询到用户名为："+member.getMemberName()+"的电话为："+member.getMobile());*/
-
-        Member member1 = new Member();
-        member1.setMembername("jack");
-        List<Member> memberList = memberDao.findAll(Example.of(member1));
-        List<Member> memberList1 = memberDao.findAll();
-        System.out.println(memberList);
-    }
 
     @PostMapping("/create")
     @ResponseWrapable
     public void create(@RequestBody @Valid MemberCreateReq memberCreateReq) {
         memberService.create(memberCreateReq);
     }
+
+
+    @PostMapping("/query")
+    @ResponseWrapable
+    public List<MemberQueryRsp> query(@RequestBody @Valid MemberQueryReq memberQueryReq) {
+        return memberService.query(memberQueryReq);
+    }
+
 }

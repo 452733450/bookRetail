@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name="MEMBER")
+@Table(name="member")
 @Data
 public class Member implements Serializable {
 
@@ -20,7 +20,13 @@ public class Member implements Serializable {
      * 会员名称
      */
     @Column
-    private String memberName;
+    private String membername;
+
+    /**
+     * 会员等级（1：金牌，2：银牌，3：铜牌）
+     */
+    @Column
+    private Integer membertype;
 
     /**
      * 性别（1：男，女：2）
@@ -50,17 +56,17 @@ public class Member implements Serializable {
      * 是否已删除(1:是，0：否)
      */
     @Column
-    private Integer isDeleted;
+    private Integer isdeleted;
 
     /**
      * 更新时间
      */
     @Column
-    private Date updateTime;
+    private Date updatetime;
 
     /**
      * 创建时间
      */
     @Column
-    private Date createTime;
+    private Date createtime;
 }
