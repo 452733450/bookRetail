@@ -2,10 +2,7 @@ package com.jack.demo.dto.bizorder.observer;
 
 import com.jack.demo.dao.MemberRepository;
 import com.jack.demo.dao.PointRepository;
-import com.jack.demo.dto.bizorder.calculate.Context;
-import com.jack.demo.dto.bizorder.calculate.CoperMember;
-import com.jack.demo.dto.bizorder.calculate.GoldMember;
-import com.jack.demo.dto.bizorder.calculate.SilverMember;
+import com.jack.demo.dto.bizorder.calculate.*;
 import com.jack.demo.dto.bizorder.req.BizOrderCreateReq;
 import com.jack.demo.dto.orderdetail.bo.OrderDetailBO;
 import com.jack.demo.entity.Member;
@@ -58,20 +55,9 @@ public class PointObserver extends Observer {
 
         // 订单总价
         BigDecimal totalPrice = orderDetailBOList.stream().reduce(BigDecimal.ZERO, (x, y) -> x.add(y.getPrice().multiply(new BigDecimal(y.getNum()))), BigDecimal::add);
-        BigDecimal totalPoint;
-        switch (memberType) {
-            case 1:
-                totalPoint = new Context(new CoperMember()).executeCalculate(totalPrice);
-                break;
-            case 2:
-                totalPoint = new Context(new SilverMember()).executeCalculate(totalPrice);
-                break;
-            case 3:
-                totalPoint = new Context(new GoldMember()).executeCalculate(totalPrice);
-                break;
-            default:
-                throw new BizException("会员{}等级异常", memberType);
-        }
+
+        // 计算积分
+        BigDecimal totalPoint = CalculateAdapter.getInstance().executeCalculate(totalPrice, memberType);
 
         Point point = pointRepository.findByMemberid(bizOrderCreateReq.getMemberid());
         if (point != null) {
