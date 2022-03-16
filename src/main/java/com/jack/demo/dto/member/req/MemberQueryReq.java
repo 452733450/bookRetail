@@ -1,6 +1,9 @@
 package com.jack.demo.dto.member.req;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -11,6 +14,9 @@ import java.io.Serializable;
  * @Date: 2022/03/15/14:08
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemberQueryReq implements Serializable {
     private static final long serialVersionUID = -3875970543290465797L;
     /**

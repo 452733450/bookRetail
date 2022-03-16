@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,6 +32,8 @@ public class MemberServiceImpl implements MemberService {
     public void create(MemberCreateReq memberCreateReq) {
         Member member = new Member();
         BeanUtils.copyProperties(memberCreateReq, member);
+        member.setUpdatetime(new Date());
+        member.setCreatetime(new Date());
         memberRepository.save(member);
     }
 

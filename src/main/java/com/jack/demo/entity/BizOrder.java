@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "bizorder")
@@ -52,4 +54,8 @@ public class BizOrder implements Serializable {
      * 创建时间
      */
     private Date createtime;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="bizorderid",referencedColumnName = "id")
+    private List<OrderDetail> orderDetails = new ArrayList<>();
 }

@@ -1,6 +1,9 @@
 package com.jack.demo.dto.orderdetail.bo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -8,6 +11,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderDetailBO implements Serializable {
     private static final long serialVersionUID = -6657795830418908498L;
 

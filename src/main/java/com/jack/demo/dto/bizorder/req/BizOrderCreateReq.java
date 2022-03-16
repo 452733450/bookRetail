@@ -1,7 +1,10 @@
 package com.jack.demo.dto.bizorder.req;
 
 import com.jack.demo.dto.orderdetail.bo.OrderDetailBO;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -10,6 +13,9 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BizOrderCreateReq implements Serializable {
     private static final long serialVersionUID = -479543404403086830L;
 

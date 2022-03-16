@@ -50,6 +50,7 @@ public class PointObserver extends Observer {
 
         // 会员等级
         Integer memberType = member.getMembertype();
+        Assert.notNull(memberType, "会员等级数据异常");
         List<OrderDetailBO> orderDetailBOList = bizOrderCreateReq.getOrderDetailBOList();
         if (CollectionUtils.isEmpty(orderDetailBOList)) {
             return;

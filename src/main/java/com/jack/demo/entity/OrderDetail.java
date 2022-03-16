@@ -72,4 +72,7 @@ public class OrderDetail implements Serializable {
      * 创建时间
      */
     private Date createtime;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private BizOrder bizOrder;
 }

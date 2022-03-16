@@ -2,16 +2,11 @@ package com.jack.demo.aspect;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
@@ -43,7 +38,7 @@ public class LogAspect {
     @AfterReturning(returning = "ret", pointcut = "com.jack.demo.aspect.SystemArchitecture.inWebLayer()")
     public void doAfterReturning(Object ret) {
         // 处理完请求，返回内容
-        log.info("方法的返回值 : " + ret);
+        log.info("RETURN : " + ret);
     }
 
     //后置异常通知
@@ -55,6 +50,6 @@ public class LogAspect {
     //后置最终通知,final增强，不管是抛出异常或者正常退出都会执行
     @After("com.jack.demo.aspect.SystemArchitecture.inWebLayer()")
     public void after(JoinPoint joinPoint) {
-        log.info("方法：{}.{}执行完成后 : ", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
+        log.info("方法：{}.{}执行完成 : ", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
     }
 }

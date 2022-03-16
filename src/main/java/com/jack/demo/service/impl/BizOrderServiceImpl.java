@@ -6,6 +6,7 @@ import com.jack.demo.dao.MemberRepository;
 import com.jack.demo.dao.OrderDetailRepository;
 import com.jack.demo.dto.bizorder.observer.Subject;
 import com.jack.demo.dto.bizorder.req.BizOrderCreateReq;
+import com.jack.demo.dto.bizorder.req.BizOrderQueryReq;
 import com.jack.demo.dto.orderdetail.bo.OrderDetailBO;
 import com.jack.demo.entity.BizOrder;
 import com.jack.demo.entity.Book;
@@ -15,6 +16,8 @@ import com.jack.demo.enums.YesOrNoEnum;
 import com.jack.demo.exception.BizException;
 import com.jack.demo.service.BizOrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -90,10 +93,10 @@ public class BizOrderServiceImpl implements BizOrderService {
     }
 
     @Override
-    public void query() {
-        List<BizOrder> bizOrders = bizOrderRepository.findAll();
-        List<OrderDetail> orderDetails = orderDetailRepository.findAll();
-        log.info("查询结束");
+    public List<BizOrder> query(BizOrderQueryReq queryReq) {
+        BizOrder bizOrder = new BizOrder();
+        BeanUtils.copyProperties(queryReq, bizOrder);
+        return bizOrderRepository.findAll(Example.of(bizOrder));
     }
 
     private void checkMember(Long memberId) {

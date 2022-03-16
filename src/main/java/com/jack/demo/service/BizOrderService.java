@@ -1,6 +1,10 @@
 package com.jack.demo.service;
 
 import com.jack.demo.dto.bizorder.req.BizOrderCreateReq;
+import com.jack.demo.dto.bizorder.req.BizOrderQueryReq;
+import com.jack.demo.entity.BizOrder;
+
+import java.util.List;
 
 /**
  * @Description:
@@ -11,5 +15,5 @@ public interface BizOrderService {
 
     void create(BizOrderCreateReq bizOrderCreateReq);
 
-    void query();
+    List<BizOrder> query(BizOrderQueryReq queryReq);
 }

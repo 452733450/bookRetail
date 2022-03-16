@@ -1,6 +1,9 @@
 package com.jack.demo.dto.member.req;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotNull;
@@ -12,6 +15,9 @@ import java.io.Serializable;
  * @Date: 2022/03/15/14:08
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemberCreateReq implements Serializable {
     private static final long serialVersionUID = -3875970543290465797L;
 
@@ -22,7 +28,7 @@ public class MemberCreateReq implements Serializable {
     private String membername;
 
     /**
-     * 会员等级（1：金牌，2：银牌，3：铜牌）
+     * 会员等级（1：铜牌，2：银牌，3：金牌）
      */
     @NotNull(message = "会员等级不可为空")
     @Range(min = 1, max = 3)

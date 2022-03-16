@@ -2,6 +2,8 @@ package com.jack.demo.web.contorller;
 
 import com.jack.demo.annotation.ResponseWrapable;
 import com.jack.demo.dto.bizorder.req.BizOrderCreateReq;
+import com.jack.demo.dto.bizorder.req.BizOrderQueryReq;
+import com.jack.demo.entity.BizOrder;
 import com.jack.demo.service.BizOrderService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("bizOrder")
@@ -29,7 +32,7 @@ public class BizOrderController {
 
     @PostMapping("/query")
     @ResponseWrapable
-    public void query() {
-        bizOrderService.query();
+    public List<BizOrder> query(@RequestBody BizOrderQueryReq queryReq) {
+        return bizOrderService.query(queryReq);
     }
 }
